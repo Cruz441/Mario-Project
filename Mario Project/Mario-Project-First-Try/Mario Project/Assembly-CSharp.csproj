@@ -63,7 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CharacterAnim.cs" />
-    <Compile Include="Assets\Scripts\CoinPickup.cs" />
+    <Compile Include="Assets\Scripts\CoinBox.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>F:/Unity/Unity_projects/Unity_GitHub_Projects/Mario-Project/Mario Project/Mario-Project-First-Try/Mario Project/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
