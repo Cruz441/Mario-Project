@@ -4,23 +4,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    private Rigidbody2D rb2d;
     public float speed;
 
-	// Use this for initialization
-	void Start () {
+    private Rigidbody2D rb2d;
+   
+    // Use this for initialization
+    void Start () {
         rb2d = GetComponent<Rigidbody2D>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
-
         Vector2 movement = new Vector2(moveHorizontal, 0);
         rb2d.AddForce(movement * speed);
     }
@@ -33,6 +28,14 @@ public class PlayerController : MonoBehaviour {
             {
                 rb2d.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Pickup"))
+        {
+            other.gameObject.SetActive(false);
         }
     }
 }

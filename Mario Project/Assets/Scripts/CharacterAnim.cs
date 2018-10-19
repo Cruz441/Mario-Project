@@ -17,15 +17,20 @@ public class CharacterAnim : MonoBehaviour {
         {
             anim.SetBool("isRunningRight", true);
         }
+        else
+        {
+            anim.SetBool("isRunningRight", false);
+        }
 
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             anim.SetBool("isRunningLeft", true);
         }
         else
         {
-            anim.SetBool("isRunningRight", false);
+            anim.SetBool("isRunningLeft", false);
         }
+        
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
