@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - Pickup
+  - CoinBox
+  - Goomba
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -48,6 +51,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 497615307
+    locked: 0
+  - name: Goomba
+    uniqueID: 2080488901
     locked: 0
   - name: Blocks
     uniqueID: 287235749
