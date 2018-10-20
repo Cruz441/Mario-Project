@@ -9,6 +9,8 @@ TagManager:
   - CoinBox
   - Goomba
   - Wall
+  - endgame
+  - End
   layers:
   - Default
   - TransparentFX
@@ -18,9 +20,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Goomba
+  - Wall
+  - Player
   - 
   - 
   - 

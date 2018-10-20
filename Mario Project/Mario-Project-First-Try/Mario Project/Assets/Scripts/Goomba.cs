@@ -5,9 +5,11 @@ using UnityEngine;
 public class Goomba : MonoBehaviour {
 
     public float moveSpeed;
+    private bool playerHit;
+    private Animator anim;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -21,6 +23,6 @@ public class Goomba : MonoBehaviour {
         if(col.gameObject.tag == "Wall")
         {
             moveSpeed *= -1;
-        }
+        }        
     }
 }
