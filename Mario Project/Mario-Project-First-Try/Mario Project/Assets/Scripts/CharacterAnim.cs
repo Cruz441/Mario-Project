@@ -34,7 +34,7 @@ public class CharacterAnim : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            anim.SetTrigger("isJumping");
+            anim.SetTrigger("jump");
         }
 	}
 }

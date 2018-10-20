@@ -7,17 +7,34 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     //--Movement variables--//
-    public float speed;    
+    public float speed;
+    private Rigidbody2D rb2d;
+    public float jumpForce;
+
+
+    public Transform feetPos;
+    public float checkRadius;
+    public LayerMask whatIsGround;
+
+    private float jumpTimeCounter;
+    public float jumpTime;
+    private bool isJumping;
+
+    private Vector2 moveVelocity;
+    private float moveInput;
+    private bool isGrounded;
+    //--Sound--//
     public AudioClip coinPickup;
     public AudioClip jumpClip;
-    public float jumpForce;
+    public AudioClip levelComplete;
+  
+
+    
 
     //--text variables--//
     public Text countText;    
     public Text winText;
-    
-
-    private Rigidbody2D rb2d;
+        
     private int count;
     
     // Use this for initialization
@@ -28,31 +45,46 @@ public class PlayerController : MonoBehaviour {
         SetCountText();              
 	}
 
-    
-    //--left and right movement--//
-    void FixedUpdate()
+    void Update()
     {
-    float moveHorizontal = Input.GetAxis("Horizontal");
-    Vector2 movement = new Vector2(moveHorizontal, 0);
-    rb2d.AddForce(movement * speed);
-    }
-
-
-    //--Jump and jump sound--//
-    private void OnCollisionStay2D(Collision2D collision)
-    { 
-        if(collision.collider.tag == "Ground")
+        isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
+        
+        if(isGrounded == true && Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                rb2d.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            isJumping = true;
+            jumpTimeCounter = jumpTime;
+            rb2d.velocity = Vector2.up * jumpForce;
+        }
 
-                //- Jump Sound-//
-                AudioSource audio = GetComponent<AudioSource>();
-                audio.PlayOneShot(jumpClip);
+        if (Input.GetKey(KeyCode.UpArrow) && isJumping == true)
+        {
+            if(jumpTimeCounter > 0)
+            {
+                rb2d.velocity = Vector2.up * jumpForce;
+                jumpTimeCounter -= Time.deltaTime;
+            } else
+            {
+                isJumping = false;
             }
+
+            AudioSource audio = GetComponent<AudioSource>();
+            audio.PlayOneShot(jumpClip);
+        }
+
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            isJumping = false;
         }
     }
+
+    void FixedUpdate()
+    {
+        moveInput = Input.GetAxisRaw("Horizontal");
+        rb2d.velocity = new Vector2(moveInput * speed, rb2d.velocity.y);
+    }
+
+
+   
 
     //--coin and coin sound--//
     private void OnTriggerEnter2D(Collider2D other)
@@ -71,6 +103,8 @@ public class PlayerController : MonoBehaviour {
         {
             other.gameObject.SetActive(true);
             winText.text = "You Win!";
+            AudioSource audio = GetComponent<AudioSource>();
+            audio.PlayOneShot(levelComplete);            
         }        
     }
 

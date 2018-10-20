@@ -11,6 +11,8 @@ TagManager:
   - Wall
   - endgame
   - End
+  - goombaHead
+  - feetPos
   layers:
   - Default
   - TransparentFX
@@ -21,14 +23,14 @@ TagManager:
   - 
   - 
   - Goomba
+  - goombaHead
   - Wall
+  - Ground
+  - 
+  - 
+  - 
+  - 
   - Player
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
   - 
   - 
   - 
