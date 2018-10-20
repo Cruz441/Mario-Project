@@ -24,15 +24,17 @@ public class PlayerController : MonoBehaviour {
     void Start () {
         rb2d = GetComponent<Rigidbody2D>();       
         count = 0;
+        winText.text = "";
         SetCountText();              
 	}
-	
+
+    
     //--left and right movement--//
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        Vector2 movement = new Vector2(moveHorizontal, 0);
-        rb2d.AddForce(movement * speed);
+    float moveHorizontal = Input.GetAxis("Horizontal");
+    Vector2 movement = new Vector2(moveHorizontal, 0);
+    rb2d.AddForce(movement * speed);
     }
 
 
@@ -65,26 +67,15 @@ public class PlayerController : MonoBehaviour {
             SetCountText();
         }
 
-        //--goomba destroy?--//
-        if (other.gameObject.CompareTag("Goomba"))
-        {
-            Destroy(gameObject);          
-        }
-
         if (other.gameObject.CompareTag("End"))
         {
             other.gameObject.SetActive(true);
-            SetWinText();
+            winText.text = "You Win!";
         }        
     }
 
     void SetCountText()
     {
      countText.text = "Count: " + count.ToString();
-    }      
-
-    void SetWinText()
-    {
-        winText.text = "You win";
-    }
+    }  
 }
