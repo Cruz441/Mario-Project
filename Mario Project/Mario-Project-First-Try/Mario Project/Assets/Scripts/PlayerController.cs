@@ -75,6 +75,9 @@ public class PlayerController : MonoBehaviour {
         {
             isJumping = false;
         }
+
+        if (Input.GetKey("escape"))
+            Application.Quit();
     }
 
     void FixedUpdate()
